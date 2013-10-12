@@ -1,4 +1,4 @@
-#!/Users/ParasModi/Frames/django/venv/bin/python
+#!/Users/ParasModi/hellodjango/venv/bin/python
 from django.core import management
 
 if __name__ == "__main__":
