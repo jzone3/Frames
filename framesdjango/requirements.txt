@@ -1,0 +1,7 @@
+bute==0.6.24
+wsgiref==0.1.2
+git+git://github.com/django-nonrel/django-nonrel.git@master
+git+git://github.com/django-nonrel/django-permission-backend-nonrel.git@master
+git+https://github.com/adamrpah/mongodb-engine.git
+djangotoolbox==0.9.2
+pymongo==2.4
