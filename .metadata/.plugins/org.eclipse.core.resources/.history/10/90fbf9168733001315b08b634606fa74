@@ -21,7 +21,7 @@ public class Main extends Activity {
         
     }
     @JavascriptInterface
-    public void javaMethod(String toast) {
+    public void showToast(String toast) {
         
     }
 
