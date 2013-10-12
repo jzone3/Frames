@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+C:\Users\David Zilburg\Documents\Git\Frames\.metadata\.plugins\org.eclipse.jdt.core
+884441386.index
+823750930.index
+2218590215.index
