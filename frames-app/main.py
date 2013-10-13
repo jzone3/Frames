@@ -19,6 +19,7 @@ import logging
 import jinja2
 import json
 import urllib
+import urllib2
 import webapp2
 from google.appengine.ext import db
 from google.appengine.api import memcache
@@ -72,16 +73,16 @@ class MainHandler(webapp2.RequestHandler):
         u = urllib.Request(upload_url,data,{'Content-Type':'multipart'})
 
 class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
-  def post(self):
-    upload_files = self.get_uploads('file')  # 'file' is file upload field in the form
-    blob_info = upload_files[0]
-    self.redirect('/serve/%s' % blob_info.key())
+	def post(self):
+		upload_files = self.get_uploads('file')  # 'file' is file upload field in the form
+		blob_info = upload_files[0]
+		self.redirect('/serve/%s' % blob_info.key())
 
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
-  def get(self, resource):
-    resource = str(urllib.unquote(resource))
-    blob_info = blobstore.BlobInfo.get(resource)
-    self.send_blob(blob_info)
+	def get(self, resource):
+		resource = str(urllib.unquote(resource))
+		blob_info = blobstore.BlobInfo.get(resource)
+		self.send_blob(blob_info)
 
 class CreateAccount(BaseHandler):
     def post(self):
@@ -96,9 +97,20 @@ class CreateAccount(BaseHandler):
         del returned['cookie']
         self.write(json.dumps(returned))
 
+class GetFeed(BaseHandler):
+	def get(self):
+		coords = self.rget('coords')
+		latitude, longitude = coords.split('|')
+		latitude = float(latitude)
+		longitude = float(longitude)
+		url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=%s&sensor=false" % (str(latitude) + "," + str(longitude))
+		response = urllib2.urlopen(url)
+		html = json.load(response)
+		city_name = html['results'][0]['address_components'][2]['long_name']
 
 app = webapp2.WSGIApplication([('/', MainHandler),
                                 ('/create_account', CreateAccount),
                                ('/upload', UploadHandler),
-                               ('/serve/([^/]+)?', ServeHandler)],
+                               ('/serve/([^/]+)?', ServeHandler),
+                               ('/get_feed', GetFeed)],
                               debug=True)
