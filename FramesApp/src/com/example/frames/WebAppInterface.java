@@ -1,12 +1,14 @@
 package com.example.frames;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -24,10 +26,31 @@ public class WebAppInterface {
         mContext = c;
     }
 
-
+    @JavascriptInterface
+    public double locationX(){
+    	Location location1 = mContext.getLastBestLocation();
+    	return location1.getLongitude();
+    	
+    }
+    @JavascriptInterface
+    public double locationY(){
+    	Location location1 = mContext.getLastBestLocation();
+    	return location1.getLatitude();
+    	
+    }
     @JavascriptInterface
     public void onOpen(){
     	mContext.onOpen();
+    }
+    @JavascriptInterface
+    public String encoder(){
+    	try {
+			return mContext.encodeImage(mContext.mediaFile).replace("+", "%2B");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
     }
    
 

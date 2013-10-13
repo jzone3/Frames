@@ -207,7 +207,7 @@ public class Base64
     
     
     /** Preferred encoding. */
-    private final static String PREFERRED_ENCODING = "US-ASCII";
+    final static String PREFERRED_ENCODING = "US-ASCII";
     
 	
     private final static byte WHITE_SPACE_ENC = -5; // Indicates white space in encoding
