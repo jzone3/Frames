@@ -29,10 +29,23 @@ PASS_RE = re.compile(r"^.{3,20}$")
 # 	date_created   = db.DateTimeProperty(auto_now_add = True)
 
 class Picture(db.Model):
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	picture = db.TextProperty(required=True)
+	location = db.StringProperty(required=False)
+=======
+<<<<<<< HEAD
+>>>>>>> 8e526a5a7206ccca01fee6fce05da7ca6b8709b4
 	picture = db.TextPropertyy(required = True)
 	location = db.StringProperty(required=False)
 	picture = db.TextProperty(required = True)
 	# location = db.StringProperty(required=True)
+<<<<<<< HEAD
+=======
+>>>>>>> 187e5d68f0e173ddf13c80ccdc80e49ba144fd87
+>>>>>>> d35a359b09e0d54a7e06f74f55df32214970f73e
+>>>>>>> 8e526a5a7206ccca01fee6fce05da7ca6b8709b4
 	latitude = db.FloatProperty(required=True)
 	longitude = db.FloatProperty(required=True)
 	created = db.DateTimeProperty(auto_now_add = True)
@@ -49,6 +62,10 @@ RADIUS_INCREMENTS = [5, 10, 25, 50, 100]
 GET_USER = db.GqlQuery("SELECT * FROM Users WHERE email = :email LIMIT 1")
 
 def get_feed_by_coords(latitude, longitude):
+<<<<<<< HEAD
+	r = db.GqlQuery("SELECT * FROM Picture ORDER BY created DESC")
+	return r
+=======
 	#(x - h)^2 + (y - k)^2 = r2
 	r = None
 	for d in RADIUS_INCREMENTS:
@@ -64,6 +81,7 @@ def get_feed_by_coords(latitude, longitude):
 			break
 	return r4
 
+>>>>>>> d35a359b09e0d54a7e06f74f55df32214970f73e
 
 def get_city_by_coords(latitude, longitude):
 	# latitude, longitude = coords.split('|')
