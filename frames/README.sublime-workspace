@@ -1,0 +1,311 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"backgr",
+				"background"
+			],
+			[
+				"text",
+				"textarea	Tag"
+			],
+			[
+				"sen",
+				"sendResponse"
+			],
+			[
+				"tweet",
+				"tweet-timestamp"
+			],
+			[
+				"twit",
+				"twitterHandle"
+			],
+			[
+				"com",
+				"comments"
+			],
+			[
+				"even",
+				"eventEmitter"
+			],
+			[
+				"ep",
+				"episodes_parsed"
+			],
+			[
+				"epis",
+				"episodes_parsed"
+			],
+			[
+				"episo",
+				"episode_number"
+			],
+			[
+				"episode_",
+				"episode_number"
+			],
+			[
+				"epi",
+				"episodes_parsed"
+			],
+			[
+				"seas",
+				"season_num"
+			],
+			[
+				"episode",
+				"episode_amount"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"selected_items":
+		[
+			[
+				"ssjso",
+				"Set Syntax: JSON"
+			],
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"ind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Jared/Projects/Frames/frames/wsgi/application",
+		"/Users/Jared/Projects/Frames/frames/setup.py",
+		"/Users/Jared/Projects/Frames/frames/wsgi/myflaskapp.py",
+		"/Users/Jared/Projects/Frames/frames/wsgi/static/README",
+		"/Users/Jared/Projects/hackBCA/custom.css",
+		"/Users/Jared/Projects/hackBCA/index.html",
+		"/Users/Jared/Projects/hackBCA/about.html",
+		"/Users/Jared/Projects/AutoTranslation/main.py",
+		"/Users/Jared/Desktop/email.html",
+		"/Users/Jared/Projects/Project-Alexandria/templates/base.html",
+		"/Users/Jared/Projects/Project-Alexandria/templates/user_page.html",
+		"/Users/Jared/Downloads/1pxdeep-master/scheme.less",
+		"/Users/Jared/Projects/screenshades/chrome_ext/background.js",
+		"/Users/Jared/Projects/screenshades/chrome_ext/content_script.js",
+		"/Users/Jared/Projects/screenshades/fetcher/twitter.js",
+		"/Users/Jared/Projects/screenshades/fetcher/README.md",
+		"/Users/Jared/Projects/screenshades/fetcher/fetch2.js",
+		"/Users/Jared/Projects/screenshades/metadata/input.html",
+		"/Users/Jared/Projects/screenshades/.gitignore"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"hr",
+			"h4",
+			"h3",
+			"team-circle-img",
+			"187.5",
+			"250",
+			"circle-img",
+			"col-md-4",
+			"<h3>Bilbo Baggins</h3><br/>",
+			"<h3>Bilbo Baggins</h3>\n							<h4>Professional Hobbit</h4><br/>",
+			",",
+			"small",
+			",",
+			"subject",
+			"name",
+			"id",
+			"name",
+			"</label>",
+			"textfield",
+			"Jared",
+			"overaly",
+			"overlay",
+			" \\",
+			"\n",
+			"request",
+			"body",
+			"data",
+			"tweets",
+			"episode_numb",
+			"window.$(window.$(window.$('.vevent')[i]).find(\"td\")[0]).text()",
+			"$(",
+			"console.log",
+			"$(",
+			"split",
+			"statuses",
+			"",
+			"'",
+			"\"",
+			"'",
+			"u'",
+			"u",
+			"&",
+			"name="
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"'",
+			"\"",
+			"",
+			"\"",
+			"'",
+			"u"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"project": "README.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
