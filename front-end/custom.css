@@ -20,7 +20,22 @@ body {
 	margin: 0;
 	float: left;
 	background-color: #9b59b6;
-	border: none;
+	border-right: 1px solid rgba(0,0,0,.5);
 	height: 100%;
 	color: #ecf0f1;
+}
+
+.navbar-element-last {
+	width: 20%;
+	padding: 0;
+	margin: 0;
+	float: left;
+	background-color: #9b59b6;
+	border-right: none;
+	height: 100%;
+	color: #ecf0f1;
+}
+
+button {
+	border-radius: 0 !important;
 }
