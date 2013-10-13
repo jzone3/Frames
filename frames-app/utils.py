@@ -9,7 +9,7 @@ import datetime
 import random
 import string
 import logging
-
+import time
 from secret import *
 
 try:
@@ -29,13 +29,10 @@ PASS_RE = re.compile(r"^.{3,20}$")
 # 	date_created   = db.DateTimeProperty(auto_now_add = True)
 
 class Picture(db.Model):
-<<<<<<< HEAD
 	picture = db.TextPropertyy(required = True)
 	location = db.StringProperty(required=False)
-=======
 	picture = db.TextProperty(required = True)
 	# location = db.StringProperty(required=True)
->>>>>>> 187e5d68f0e173ddf13c80ccdc80e49ba144fd87
 	latitude = db.FloatProperty(required=True)
 	longitude = db.FloatProperty(required=True)
 	created = db.DateTimeProperty(auto_now_add = True)
@@ -77,6 +74,47 @@ def get_city_by_coords(latitude, longitude):
 	html = json.load(response)
 	city_name = html['results'][0]['address_components'][2]['long_name']
 	return city_name
+def time_difference(time):
+	'''Calculates text time difference for guide page'''
+	now = datetime.datetime.now()
+	if now > time + datetime.timedelta(days=365.25):
+		ago = now.year - time.year
+		if ago == 1:
+			return str(ago) + " year ago"
+		else:
+			return str(ago) + " years ago"
+	elif now >= time + datetime.timedelta(days=30):
+		ago = now.month - time.month
+		if ago == 1:
+			return str(ago) + " month ago"
+		else:
+			return str(ago) + " months ago"
+	elif now >= time + datetime.timedelta(days=1):
+		ago = now.day - time.day
+		if ago == 1:
+			return str(ago) + " day ago"
+		else:
+			return str(ago) + " days ago"
+	elif now >= time + datetime.timedelta(hours=1):
+		ago = now.hour - time.hour
+		if ago == 1:
+			return str(ago) + " hour ago"
+		else:
+			return str(ago) + " hours ago"
+	elif now >= time + datetime.timedelta(minutes=1):
+		ago = now.minute - time.minute
+		if ago == 1:
+			return str(ago) + " minute ago"
+		else:
+			return str(ago) + " minutes ago"
+	elif now >= time + datetime.timedelta(seconds=1):
+		ago = now.second - time.second
+		if ago == 1:
+			return str(ago) + " second ago"
+		else:
+			return str(ago) + " seconds ago"
+	else:
+		return "less than 1 second ago"
 
 def hash_str(string):
 	'''Hashes a string for user cookie'''
