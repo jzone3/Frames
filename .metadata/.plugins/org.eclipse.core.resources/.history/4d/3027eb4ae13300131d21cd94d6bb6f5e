@@ -24,7 +24,11 @@ public class WebAppInterface {
         mContext = c;
     }
 
-
+    /** Show a toast from the web page */
+    @JavascriptInterface
+    public static void showToast(String toast) {
+        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+    }
     @JavascriptInterface
     public void onOpen(){
     	mContext.onOpen();

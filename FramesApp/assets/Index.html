@@ -1,58 +1,120 @@
-<DOCTYPE html>
-<html lang=en>
-	<head>
-		<meta charset="utf-8">
-		<style type ="text/css">
-			.defaultfontclass {
-				color: #fff;
-	  			font-size: 16px;
-			}
-		</style>
-		<link href="bootstrap.min.css" rel ="stylesheet">
-		<link href="custom1.css" rel = "stylesheet">
-		<title>Near Me</title>
-	</head>
-	<body>
-		<div class="container">
-			<p>Frames</p>
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-			<input type="button" value="Open Camera" onClick="openCamera()" />
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Frames</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
-			<script type="text/javascript">
-			    function openCamera() {
-			        Android.onOpen();
-			        $("#form").submit(function(){
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="custom.css" />
+</head>
+<body>
+	<div class="topbar">
+	Frames
+	</div>
 
-						var filename = $("input[name=file]").val();
-						var filename = Android.nameOfFile()
-					});
-			    }
-			</script>
-		</div>
-
-		<div class="container">
-			<form action="http://frames-app.appspot.com/upload" method="POST" enctype="image/jpeg">
-			upload File: <input type="file" name="file"><br><input type="submit" name="submit" value="Submit">
-			</form>
-		</div>
-
-		<div class="navbar" style="height=10%; padding: 0; bottom:0; position:fixed; width:100%">
-			<div type="button" class="btn btn-default" style="width:20%">
-				<a href="https://www.google.com">Google</a>
+	<div id="page">
+		<div id="page-1-content" style="display: none;">
+			<div class="image">
+				<div class="image-info">
+					<div class="location">
+						<i class="icon-pushpin"></i> 12 mi
+					</div>
+					<div class="time">
+						<i class="icon-time"></i> 5 h
+					</div>
+				</div>
+				<img src="http://placekitten.com/300/300">
+				<!-- <div class="image-below">
+					<div class="frame-it">
+						<button type="button" class="btn frame-it-btn">+</button>
+						<p>+25</p>
+					</div>
+					<div class="frame-it">
+						<span class="source">FRAMES</span>
+					</div>
+					<div class="user"><img src="http://placekitten.com/50/50" width="50" height="50"> <p>jzone3</p><br/></div>
+				</div> -->
 			</div>
 			
-			<div type="button" class="btn btn-default" style="width:20%">
-				<a href="https://www.google.com">Google</a>
+			<div class="image">
+				<div class="image-info">
+					<div class="location">
+						<i class="icon-pushpin"></i> 12 mi
+					</div>
+					<div class="time">
+						<i class="icon-time"></i> 5 h
+					</div>
+				</div>
+				<img src="http://placekitten.com/300/300">
+				<!-- <div class="image-below">
+					<div class="frame-it">
+						<button type="button" class="btn frame-it-btn">+</button>
+						<p>+25</p>
+					</div>
+					<div class="user"><img src="http://placekitten.com/50/50"> <p>jzone3</p><br/></div>
+				</div> -->
 			</div>
-			<div type="button" class="btn btn-default" style="width:20%">
-				<a href="https://www.google.com">Google</a>
-			</div>
-			<div type="button" class="btn btn-default" style="margin:0;width:20%">
-				<a href="https://www.google.com">Google</a>
-			</div>
-			<div type="button" class="btn btn-default" style="width:20%">
-				<a href="https://www.google.com">Google</a>
+			
+			<div class="image last">
+				<div class="image-info">
+					<div class="location">
+						<i class="icon-pushpin"></i> 12 mi
+					</div>
+					<div class="time">
+						<i class="icon-time"></i> 5 h
+					</div>
+				</div>
+				<img src="http://placekitten.com/300/300">
+				<!-- <div class="image-below">
+					<div class="frame-it">
+						<button type="button" class="btn frame-it-btn">+</button>
+						<p>+25</p>
+					</div>
+					<div class="user"><img src="http://placekitten.com/50/50"> <p>jzone3</p><br/></div>
+				</div> -->
 			</div>
 		</div>
-	</body>
+		<div id="page-2-content" style="display: none;">2</div>
+		<div id="page-3-content" style="display: none;">3</div>
+		<div id="page-4-content" style="display: none;">4</div>
+	</div>
+	<div class="navbar">
+		<button id="page-1-button" type="button" class="navbar-element btn on-page"><i class="icon-map-marker icon-2x"></i></button>
+		<button id="page-2-button" type="button" class="navbar-element btn"><i class="icon-camera icon-2x"></i></button>
+		<button id="page-3-button" type="button" class="navbar-element btn"><i class="icon-picture icon-2x"></i> </button>
+	</div>
+
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		$('document').ready(function() {
+			changePage(1);
+			
+			$('#page-1-button').click(function() {
+				changePage(1);
+			});
+
+			$('#page-2-button').click(function() {
+				changePage(2);
+			});
+
+			$('#page-3-button').click(function() {
+				changePage(3);
+			});
+		});
+
+		var previous = 1;
+		
+		var changePage = function(pageNumber) {	
+			$('#page-' + previous + '-content').hide();
+			$('#page-' + previous + '-button').removeClass('on-page');
+			$('#page-' + pageNumber + '-content').show();
+			$('#page-' + pageNumber + '-button').addClass('on-page');
+			previous = pageNumber;
+		}
+
+	</script>
+</body>
 </html>

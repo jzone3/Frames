@@ -59,7 +59,7 @@ public class Main extends Activity {
         webSettings.setJavaScriptEnabled(true);
         
         webview.setWebViewClient(new WebViewClient());
-        webview.loadUrl("file:///android_asset/index.html");
+        webview.loadUrl("file:///android_asset/Index.html");
         
     }
     @Override

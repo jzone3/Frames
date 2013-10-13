@@ -59,7 +59,7 @@ public class Main extends Activity {
         webSettings.setJavaScriptEnabled(true);
         
         webview.setWebViewClient(new WebViewClient());
-        webview.loadUrl("file:///android_asset/index.html");
+        webview.loadUrl("file:///android_asset/Index.html");
         
     }
     @Override
@@ -175,11 +175,11 @@ public class Main extends Activity {
   }
 
 	
-	private String Post(File file) {
+	private String getLink() {
 		System.setProperty("http.agent", "PicShare");
       String urlParameters = "";
 		try {
-			urlParameters = "image=" + encodeImage(file).replace("+", "%2B");
+			urlParameters = "image=" + encodeImage(sendImage).replace("+", "%2B");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -189,7 +189,7 @@ public class Main extends Activity {
       
       URL url = null;
       try {
-      	url = new URL("https://frames-app.appspot.com/");
+      	url = new URL("http://picshare-helper.appspot.com");
       } catch (Exception e) {
       	// TODO Auto-generated catch block
       	e.printStackTrace();

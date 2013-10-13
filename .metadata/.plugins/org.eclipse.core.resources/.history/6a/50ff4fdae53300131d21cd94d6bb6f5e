@@ -59,7 +59,7 @@ public class Main extends Activity {
         webSettings.setJavaScriptEnabled(true);
         
         webview.setWebViewClient(new WebViewClient());
-        webview.loadUrl("file:///android_asset/index.html");
+        webview.loadUrl("file:///android_asset/Index.html");
         
     }
     @Override
@@ -189,7 +189,7 @@ public class Main extends Activity {
       
       URL url = null;
       try {
-      	url = new URL("https://frames-app.appspot.com/");
+      	url = new URL("https://frames-app.appspot.com");
       } catch (Exception e) {
       	// TODO Auto-generated catch block
       	e.printStackTrace();

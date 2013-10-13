@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 
 public class WebAppInterface {
-	Main mContext;
+	static Main mContext;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Uri fileUri;
 
@@ -24,7 +24,11 @@ public class WebAppInterface {
         mContext = c;
     }
 
-
+    /** Show a toast from the web page */
+    @JavascriptInterface
+    public static void showToast(String toast) {
+        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+    }
     @JavascriptInterface
     public void onOpen(){
     	mContext.onOpen();
