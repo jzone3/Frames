@@ -60,12 +60,16 @@ class BaseHandler(webapp2.RequestHandler):
         return False
 
 class MainHandler(webapp2.RequestHandler):
-  def get(self):
-    upload_url = blobstore.create_upload_url('/upload')
-    self.response.out.write('<html><body>')
-    self.response.out.write('<form action="%s" method="POST" enctype="multipart/form-data">' % upload_url)
-    self.response.out.write("""Upload File: <input type="file" name="file"><br> <input type="submit"
-        name="submit" value="Submit"> </form></body></html>""")
+    def get(self):
+        upload_url = blobstore.create_upload_url('/upload')
+        self.response.out.write('<html><body>')
+        self.response.out.write('<form action="%s" method="POST" enctype="multipart/form-data">' % upload_url)
+        self.response.out.write("""Upload File: <input type="file" name="file"><br> <input type="submit"
+            name="submit" value="Submit"> </form></body></html>""")
+
+    def post(self, data):
+        upload_url = blobstore.create_upload_url('/upload')
+        u = urllib.Request(upload_url,data,{'Content-Type':'multipart'})
 
 class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
   def post(self):
