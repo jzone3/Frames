@@ -58,30 +58,21 @@ class BaseHandler(webapp2.RequestHandler):
                 self.delete_cookie(LOGIN_COOKIE_NAME)
                 return False
         return False
-
-class MainHandler(webapp2.RequestHandler):
+class Picture(db.Model):
+    picture = db.StringProperty(required = True)
+    location = db.StringProperty(required=False)
+    created = db.DateTimeProperty(auto_now_add = True)
+    last_modified = db.DateTimeProperty(auto_now_add=True)
+class MainHandler(BaseHandler):
     def get(self):
-        upload_url = blobstore.create_upload_url('/upload')
-        self.response.out.write('<html><body>')
-        self.response.out.write('<form action="%s" method="POST" enctype="multipart/form-data">' % upload_url)
-        self.response.out.write("""Upload File: <input type="file" name="file"><br> <input type="submit"
-            name="submit" value="Submit"> </form></body></html>""")
-
-    def post(self, data):
-        upload_url = blobstore.create_upload_url('/upload')
-        u = urllib.Request(upload_url,data,{'Content-Type':'multipart'})
-
-class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
-  def post(self):
-    upload_files = self.get_uploads('file')  # 'file' is file upload field in the form
-    blob_info = upload_files[0]
-    self.redirect('/serve/%s' % blob_info.key())
-
-class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
-  def get(self, resource):
-    resource = str(urllib.unquote(resource))
-    blob_info = blobstore.BlobInfo.get(resource)
-    self.send_blob(blob_info)
+        self.write('hello david')
+class Image(BaseHandler):
+    def get(self):
+        self.write('i hate blobstore')
+    def post(self):
+        picture = self.rget('picture')
+        p = Picture(picture=picture)
+        p.put()
 
 class CreateAccount(BaseHandler):
     def post(self):
@@ -99,6 +90,5 @@ class CreateAccount(BaseHandler):
 
 app = webapp2.WSGIApplication([('/', MainHandler),
                                 ('/create_account', CreateAccount),
-                               ('/upload', UploadHandler),
-                               ('/serve/([^/]+)?', ServeHandler)],
+                                ('/image'),],
                               debug=True)
