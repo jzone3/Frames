@@ -53,15 +53,17 @@ class SendImage(BaseHandler):
         self.response.write('Hello world!')
 
 class CreateAccount(BaseHandler):
-    def post(self):
+    def get(self):
     	username = self.rget('username')
-    	psswrd = self.rget('psswrd')
+    	psswrd = self.rget('password')
     	verify = self.rget('verify')
     	email = self.rget('email')
     	self.response.headers['Content-Type'] = 'application/json'
-        return json.dumps(create_account(username, psswrd, verify, email))
+        returned = create_account(username=username, password=psswrd, verify=verify, email=email)
+        self.write(json.dumps(returned))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/send_image', SendImage)
+    ('/send_image', SendImage),
+    ('/create_account', CreateAccount)
 ], debug=True)

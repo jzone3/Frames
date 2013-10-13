@@ -2,3 +2,4 @@
 *.pyc
 framesdjango/venv
 *.swp
+frames-app/secret.py
