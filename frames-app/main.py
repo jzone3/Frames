@@ -59,9 +59,14 @@ class BaseHandler(webapp2.RequestHandler):
                 self.delete_cookie(LOGIN_COOKIE_NAME)
                 return False
         return False
-
-class MainHandler(webapp2.RequestHandler):
+class Picture(db.Model):
+    picture = db.StringProperty(required = True)
+    location = db.StringProperty(required=False)
+    created = db.DateTimeProperty(auto_now_add = True)
+    last_modified = db.DateTimeProperty(auto_now_add=True)
+class MainHandler(BaseHandler):
     def get(self):
+<<<<<<< HEAD
         upload_url = blobstore.create_upload_url('/upload')
         self.response.out.write('<html><body>')
         self.response.out.write('<form action="%s" method="POST" enctype="multipart/form-data">' % upload_url)
@@ -83,6 +88,16 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
 		resource = str(urllib.unquote(resource))
 		blob_info = blobstore.BlobInfo.get(resource)
 		self.send_blob(blob_info)
+=======
+        self.write('hello david')
+class Image(BaseHandler):
+    def get(self):
+        self.write('i hate blobstore')
+    def post(self):
+        picture = self.rget('picture')
+        p = Picture(picture=picture)
+        p.put()
+>>>>>>> de903e2ac9575b66d5ef7b257ea2f351f2766359
 
 class CreateAccount(BaseHandler):
     def post(self):
@@ -110,7 +125,11 @@ class GetFeed(BaseHandler):
 
 app = webapp2.WSGIApplication([('/', MainHandler),
                                 ('/create_account', CreateAccount),
+<<<<<<< HEAD
                                ('/upload', UploadHandler),
                                ('/serve/([^/]+)?', ServeHandler),
                                ('/get_feed', GetFeed)],
+=======
+                                ('/image',Image),],
+>>>>>>> de903e2ac9575b66d5ef7b257ea2f351f2766359
                               debug=True)
