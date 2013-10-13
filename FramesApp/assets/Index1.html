@@ -1,0 +1,53 @@
+<DOCTYPE html>
+<html lang=en>
+	<head>
+		<meta charset="utf-8">
+		<style type ="text/css">
+			.defaultfontclass {
+				color: #fff;
+	  			font-size: 16px;
+			}
+		</style>
+		<link href="bootstrap.min.css" rel ="stylesheet">
+		<link href="custom1.css" rel = "stylesheet">
+		<title>Near Me</title>
+	</head>
+	<body>
+		<div class="container">
+			<p>Frames</p>
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+			<input type="button" value="Open Camera" onClick="openCamera()" />
+
+			<script type="text/javascript">
+			    function openCamera() {
+			        Android.onOpen();
+			    }
+			</script>
+		</div>
+
+		<div class="container">
+			<form action="http://frames-app.appspot.com/upload" method="POST" enctype="image/jpeg">
+			upload File: <input type="file" name="file"><br><input type="submit" name="submit" value="Submit">
+			</form>
+		</div>
+
+		<div class="navbar" style="height=10%; padding: 0; bottom:0; position:fixed; width:100%">
+			<div type="button" class="btn btn-default" style="width:20%">
+				<a href="https://www.google.com">Google</a>
+			</div>
+			
+			<div type="button" class="btn btn-default" style="width:20%">
+				<a href="https://www.google.com">Google</a>
+			</div>
+			<div type="button" class="btn btn-default" style="width:20%">
+				<a href="https://www.google.com">Google</a>
+			</div>
+			<div type="button" class="btn btn-default" style="margin:0;width:20%">
+				<a href="https://www.google.com">Google</a>
+			</div>
+			<div type="button" class="btn btn-default" style="width:20%">
+				<a href="https://www.google.com">Google</a>
+			</div>
+		</div>
+	</body>
+</html>
