@@ -90,15 +90,16 @@ class CreateAccount(BaseHandler):
         self.write(json.dumps(returned))
 
 class GetFeed(BaseHandler):
-	def get(self):
-		coords = self.rget('coords')
-		latitude, longitude = coords.split('|')
+	def post(self):
+		latitude = self.rget('lat')
+		longitude = self.rget('lon')
 		latitude = float(latitude)
 		longitude = float(longitude)
 		url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=%s&sensor=false" % (str(latitude) + "," + str(longitude))
 		response = urllib2.urlopen(url)
 		html = json.load(response)
 		city_name = html['results'][0]['address_components'][2]['long_name']
+		self.write(city_name)
 		get_feed_by_city(city_name)
 
 app = webapp2.WSGIApplication([('/', MainHandler),
