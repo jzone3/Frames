@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+ #!/usr/bin/env python
 #
 # Copyright 2007 Google Inc.
 #
@@ -64,15 +64,27 @@ class MainHandler(BaseHandler):
     def get(self):
         self.write("hi david")
 
+class Picture(db.Model):
+    picture = db.TextPropertyy(required = True)
+    # location = db.StringProperty(required=True)
+    latitude = db.FloatProperty(required=True)
+    longitude = db.FloatProperty(required=True)
+    created = db.DateTimeProperty(auto_now_add = True)
+
 class Image(BaseHandler):
     def get(self):
         self.write('i hate blobstore')
     def post(self):
         picture = self.rget('picture')
+<<<<<<< HEAD
+        #location = self.rget('location')
+        latitude, longitude = coords.split(',')
+=======
         location = self.rget('location')
         longitude, latitude = location.split(',')
         longitude = float(longitude)
         latitude = float(latitude)
+>>>>>>> 187e5d68f0e173ddf13c80ccdc80e49ba144fd87
         p = Picture(picture=picture,latitude=latitude,longitude=longitude)
         p.put()
 
