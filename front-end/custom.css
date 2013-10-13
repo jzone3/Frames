@@ -29,9 +29,10 @@ body {
 }
 
 .image img {
-	width: 95%;
+	width: 100%;
 	display: block;
 	margin: auto;
+	border-radius: 0%;
 }
 
 .image-info, .image-below {
