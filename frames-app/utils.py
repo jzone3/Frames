@@ -29,18 +29,7 @@ PASS_RE = re.compile(r"^.{3,20}$")
 # 	date_created   = db.DateTimeProperty(auto_now_add = True)
 
 class Picture(db.Model):
-<<<<<<< HEAD
-	picture = db.TextProperty(required=True)
-	location = db.StringProperty(required=False)
-=======
-<<<<<<< HEAD
-	picture = db.TextPropertyy(required = True)
-	location = db.StringProperty(required=False)
-=======
 	picture = db.TextProperty(required = True)
-	# location = db.StringProperty(required=True)
->>>>>>> 187e5d68f0e173ddf13c80ccdc80e49ba144fd87
->>>>>>> d35a359b09e0d54a7e06f74f55df32214970f73e
 	latitude = db.FloatProperty(required=True)
 	longitude = db.FloatProperty(required=True)
 	created = db.DateTimeProperty(auto_now_add = True)
@@ -57,26 +46,8 @@ RADIUS_INCREMENTS = [5, 10, 25, 50, 100]
 GET_USER = db.GqlQuery("SELECT * FROM Users WHERE email = :email LIMIT 1")
 
 def get_feed_by_coords(latitude, longitude):
-<<<<<<< HEAD
 	r = db.GqlQuery("SELECT * FROM Picture ORDER BY created DESC")
 	return r
-=======
-	#(x - h)^2 + (y - k)^2 = r2
-	r = None
-	for d in RADIUS_INCREMENTS:
-		lat_plus = latitude + d
-		lat_minus = latitude - d
-		lon_plus = longitude + d
-		lon_minus = longitude - d
-		r = (db.GqlQuery("SELECT * FROM Picture WHERE latitude > :lat_minus AND \
-													 latitude < :lat_plus AND \
-													 longitude > :lon_minus AND \
-													 longitude < :lon_plus", lat_minus = lat_minus, lat_plus = lat_plus, lon_minus = lon_minus, lon_plus = lon_plus)).get()
-		if r and len(r) > 7:
-			break
-	return r4
-
->>>>>>> d35a359b09e0d54a7e06f74f55df32214970f73e
 
 def get_city_by_coords(latitude, longitude):
 	# latitude, longitude = coords.split('|')

@@ -163,9 +163,22 @@
 						lat: -74.4269484, //Android.locationX
 						lon: 40.4845375	//Android.locationY
 					},
-					success: function(html) {
-						$('#page-' + pageNumber + '-content').html(html)
+					complete: function(xhr, status) {
+						if (status === 'error' || !xhr.responseText) {
+							alert(status);
+						}
+						else {
+							var data = xhr.responseText;
+							$('#page-' + pageNumber + '-content').html(data);
+						}
 					}
+					// success: function(html) {
+					// 	alert(html);
+					// 	// $('#page-' + pageNumber + '-content').html(html);
+					// },
+					// error: function(httpRequest, textStatus, errorThrown) { 
+					//    alert("status=" + textStatus + ",error=" + errorThrown);
+					// }
 				})
 				// toAdd = '<h1>test</h1>';
 				// $('#page-' + pageNumber + '-content').html(toAdd);

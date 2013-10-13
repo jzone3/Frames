@@ -64,27 +64,22 @@ class MainHandler(BaseHandler):
     def get(self):
         self.write("hi david")
 
-class Picture(db.Model):
-    picture = db.TextPropertyy(required = True)
-    # location = db.StringProperty(required=True)
-    latitude = db.FloatProperty(required=True)
-    longitude = db.FloatProperty(required=True)
-    created = db.DateTimeProperty(auto_now_add = True)
+# class Picture(db.Model):
+#     picture = db.TextProperty(required = True)
+#     # location = db.StringProperty(required=True)
+#     latitude = db.FloatProperty(required=True)
+#     longitude = db.FloatProperty(required=True)
+#     created = db.DateTimeProperty(auto_now_add = True)
 
 class Image(BaseHandler):
     def get(self):
         self.write('i hate blobstore')
     def post(self):
         picture = self.rget('picture')
-<<<<<<< HEAD
-        #location = self.rget('location')
-        latitude, longitude = coords.split(',')
-=======
         location = self.rget('location')
         longitude, latitude = location.split(',')
         longitude = float(longitude)
         latitude = float(latitude)
->>>>>>> 187e5d68f0e173ddf13c80ccdc80e49ba144fd87
         p = Picture(picture=picture,latitude=latitude,longitude=longitude)
         p.put()
 
@@ -102,21 +97,32 @@ class CreateAccount(BaseHandler):
         self.write(json.dumps(returned))
 
 class GetFeed(BaseHandler):
-	def get(self):
+	def post(self):
+		self.response.headers['Access-Control-Allow-Origin'] = '*'
+		self.response.headers['Access-Control-Allow-Headers'] = 'X-Requested-With' 
 		latitude = self.rget('lat')
 		longitude = self.rget('lon')
 		latitude = float(latitude)
 		longitude = float(longitude)
 		r = get_feed_by_coords(latitude, longitude)
 		self.response.headers['Content-Type'] = 'application/json'
+		html_to_add_total = ""
 		response = []
 		for i in r:
-			response.append({
-					'picture' : i.picture,
-					'created' : i.created,
-					'distance' : ((latitude - i.latitude)**2 + (longitude - i.longitude)**2)**.5
-				})
-		self.write(response)
+			html_to_add_total += """
+			<div class="image">
+				<div class="image-info">
+					<div class="location">
+						<i class="icon-pushpin"></i> %s
+					</div>
+					<div class="time">
+						<i class="icon-time"></i> %s
+					</div>
+				</div>
+				<img src="data:image/png;base64,%s">
+			</div>
+			""" % (i.created, ((latitude - i.latitude)**2 + (longitude - i.longitude)**2)**.5, i.picture)
+		self.write(html_to_add_total)
 
 app = webapp2.WSGIApplication([('/', MainHandler),
                                 ('/create_account', CreateAccount),
