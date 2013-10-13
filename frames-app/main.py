@@ -99,6 +99,7 @@ class GetFeed(BaseHandler):
 		response = urllib2.urlopen(url)
 		html = json.load(response)
 		city_name = html['results'][0]['address_components'][2]['long_name']
+		get_feed_by_city(city_name)
 
 app = webapp2.WSGIApplication([('/', MainHandler),
                                 ('/create_account', CreateAccount),

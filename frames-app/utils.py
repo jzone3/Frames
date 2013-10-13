@@ -37,6 +37,8 @@ class Users(db.Model):
 
 GET_USER = db.GqlQuery("SELECT * FROM Users WHERE email = :email LIMIT 1")
 
+def get_feed_by_city(city):
+
 def hash_str(string):
 	'''Hashes a string for user cookie'''
 	return hmac.new(SECRET, str(string), hashlib.sha512).hexdigest()
