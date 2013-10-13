@@ -1,17 +1,111 @@
+@font-face {
+	font-family: "ProximaNova";
+	src: url('ProximaNova-Light.otf') format("opentype");
+}
+
 body {
+	font-family: ProximaNova, Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	background-color: #ecf0f1;
 	margin-bottom: 0;
 	padding-bottom: 0;
 	color: #8e44ad;
 }
 
+.topbar {
+	position: relative;
+	top: 0;
+	background-color: #9b59b6;
+	width: 100%;
+	color: #ecf0f1;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 25px;
+}
+
+.image {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.image img {
+	width: 95%;
+	display: block;
+	margin: auto;
+}
+
+.image-info, .image-below {
+	width: 100%;
+}
+
+.image-info .location, .image-info .time {
+	width: 47.5%;
+	float: left;
+}
+
+.image-info .location {
+	margin-left: 2.5%;
+}
+
+.image-info .time {
+	margin-right: 2.5%;
+	text-align: right;
+}
+
+.image-below {
+	margin-top: 5px;
+	width: 100%;
+}
+
+.frame-it-btn {
+	background-color: #9b59b6;
+	border-radius: 0;
+	color: #ecf0f1;
+	float: left;
+}
+
+.already-framed {
+	background-color: #67307E;
+}
+
+.frame-it p {
+	float: left;
+	margin-top: -30px;
+	margin-left: 50px;
+}
+
+.image-below .frame-it {
+	margin-left: 2.5%;
+	width: 50px;
+	float: left;
+}
+
+.image-below .user {
+	margin-right: 2.5%;
+	width: 50%;
+	float: right;
+}
+
+.image-below .user img {
+	border-radius: 25px;
+	width: 50px;
+	float: right;
+}
+
+.image-below .user p {
+	margin-top: 15px;
+	margin-right: 60px;
+	text-align: right;
+}
+
 .navbar {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	height: 20px;
 	width: 100%;
 	background-color: #9b59b6;
 	margin-bottom: 0;
+	border: none;
 }
 
 .navbar-element {
