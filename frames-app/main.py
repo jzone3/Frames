@@ -70,7 +70,8 @@ class Image(BaseHandler):
     def post(self):
         picture = self.rget('picture')
         location = self.rget('location')
-        p = Picture(picture=picture,location=location)
+        latitude, longitude = coords.split('|')
+        p = Picture(picture=picture,latitude=latitude,longitude=longitude)
         p.put()
 
 class CreateAccount(BaseHandler):
