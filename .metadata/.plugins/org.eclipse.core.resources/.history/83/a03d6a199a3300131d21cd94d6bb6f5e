@@ -1,0 +1,57 @@
+package com.example.frames;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import android.hardware.Camera;
+import android.hardware.Camera.PictureCallback;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+public class Main extends Activity {
+	private WebView webview;
+	public static viewFlipper vf;
+	Button mainbut;
+	Button camerabut;
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        vf = (ViewFlipper) findViewById(R.id.ViewFlipper01);
+        
+        WebView webview = (WebView) findViewById(R.id.webview);
+        WebSettings webSettings = webview.getSettings();
+        webview.addJavascriptInterface(new WebAppInterface(this), "Android");
+        webSettings.setJavaScriptEnabled(true);
+        
+        webview.setWebViewClient(new WebViewClient());
+        webview.loadUrl("file:///android_asset/Index.html");
+        
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    
+    
+    
+}
