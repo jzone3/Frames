@@ -1,0 +1,423 @@
+package com.example.frames;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View;
+import android.webkit.JavascriptInterface;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+private static final int ACTION_TAKE_PHOTO_B = 1;
+
+private static final String BITMAP_STORAGE_KEY = "viewbitmap";
+private static final String IMAGEVIEW_VISIBILITY_STORAGE_KEY = "imageviewvisibility";
+
+
+private String mCurrentPhotoPath;
+
+
+private static final String JPEG_FILE_PREFIX = "IMG_";
+private static final String JPEG_FILE_SUFFIX = ".jpg";
+
+private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
+
+private static File sendImage = null;
+
+public class WebAppInterface {
+    Context mContext;
+
+    /** Instantiate the interface and set the context */
+    WebAppInterface(Context c) {
+        mContext = c;
+    }
+
+    /** Show a toast from the web page */
+    @JavascriptInterface
+    public void showToast(String toast) {
+        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+    }
+    @JavascriptInterface
+    public void onOpen(){
+    	
+    }
+    
+    private File getAlbumDir() throws IOException {
+
+		File storageDir = null;
+
+		if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+			
+			storageDir = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbumName());
+
+			if (storageDir != null) {
+				if (! storageDir.mkdirs()) {
+					if (! storageDir.exists()){
+						Log.d("CameraSample", "failed to create directory");
+						return null;
+					}
+				}
+			}
+			
+		} else {
+			Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
+		}
+		
+		return storageDir;
+	}
+
+	private File createImageFile() throws IOException {
+		// create an image file name
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
+		File albumF = getAlbumDir();
+		File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+		return imageF;
+	}
+
+	private File setUpPhotoFile() throws IOException {
+		
+		File f = createImageFile();
+		mCurrentPhotoPath = f.getAbsolutePath();
+		return f;
+		//picture file to send to server
+	}
+	
+	private String getLink() {
+		System.setProperty("http.agent", "PicShare");
+        String urlParameters = "";
+		try {
+			urlParameters = "image=" + encodeImage(sendImage).replace("+", "%2B");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return "hello-3";
+		}
+		
+        
+        URL url = null;
+        try {
+        	url = new URL("http://picshare-helper.appspot.com");
+        } catch (Exception e) {
+        	// TODO Auto-generated catch block
+        	e.printStackTrace();
+        	return "hello-2";
+        }
+        
+        URLConnection conn = null;
+		try {
+			conn = url.openConnection();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "hello-1";
+		}
+		
+        conn.setDoOutput(true);
+
+        OutputStreamWriter writer = null;
+		try {
+			writer = new OutputStreamWriter(conn.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "hello0";
+		}
+
+        try {
+			writer.write(urlParameters);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "hello1";
+		}
+        try {
+			writer.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "hello2";
+		}
+
+        String line = null;
+        String toReturn = "";
+        BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "Server error. Try again.";
+		}
+        
+        try {
+			while ((line = reader.readLine()) != null) {
+			    toReturn += line;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "hello4";
+		}
+        try {
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "hello5";
+		}
+        try {
+			reader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "hello6";
+		}
+        
+        return toReturn;
+	}
+	public static String encodeFromFile( File file )
+            throws java.io.IOException {
+               
+                String encodedData = null;
+                Base64.InputStream bis = null;
+                try
+                {
+                    // Set up some useful variables
+                    byte[] buffer = new byte[ Math.max((int)(file.length() * 1.4+1),40) ];
+                    int length   = 0;
+                    int numBytes = 0;
+                   
+                    // Open a stream
+                    bis = new Base64.InputStream(
+                              new java.io.BufferedInputStream(
+                              new java.io.FileInputStream( file ) ), Base64.ENCODE );
+                   
+                    // Read until done
+                    while( ( numBytes = bis.read( buffer, length, 4096 ) ) >= 0 ) {
+                        length += numBytes;
+                    }   // end while
+                   
+                    // Save in a variable to return
+                    encodedData = new String( buffer, 0, length, "US-ASCII" );
+                       
+                }   // end try
+                catch( java.io.IOException e ) {
+                    throw e; // Catch and release to execute finally{}
+                }   // end catch: java.io.IOException
+                finally {
+                    try{ bis.close(); } catch( Exception e) {}
+                }   // end finally
+               
+                return encodedData;
+                }
+    public static String encodeImage(File file) throws IOException {
+       
+        return encodeFromFile(file);
+    }
+
+	private void setPic() {
+		//get size of imageview
+		int targetW = mImageView.getWidth();
+		int targetH = mImageView.getHeight();
+
+		//get size of actual image
+		BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+		bmOptions.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+		int photoW = bmOptions.outWidth;
+		int photoH = bmOptions.outHeight;
+		
+		//scales image to imageview
+		int scaleFactor = 1;
+		if ((targetW > 0) || (targetH > 0)) {
+			scaleFactor = Math.min(photoW/targetW, photoH/targetH);	
+		}
+
+		//scale bitmap file
+		bmOptions.inJustDecodeBounds = false;
+		bmOptions.inSampleSize = scaleFactor;
+		bmOptions.inPurgeable = true;
+
+		//converts from jpeg to bitmap
+		Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+		
+		//puts link in the editText for use
+		try {
+			meditText1.setText(getLink());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//put bitmap on imageview for display
+		mImageView.setImageBitmap(bitmap);
+		mImageView.setVisibility(View.VISIBLE);
+	
+	}
+
+	private void galleryAddPic() {
+		    Intent mediaScanIntent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
+			File f = new File(mCurrentPhotoPath);
+		    Uri contentUri = Uri.fromFile(f);
+		    mediaScanIntent.setData(contentUri);
+		    this.sendBroadcast(mediaScanIntent);
+	}
+
+	private void dispatchTakePictureIntent(int actionCode) {
+
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+		switch(actionCode) {
+		case ACTION_TAKE_PHOTO_B:
+			File f = null;
+			
+			try {
+				f = setUpPhotoFile();
+				
+				sendImage = f; //puts file in field to be used in other methods
+				
+				mCurrentPhotoPath = f.getAbsolutePath();
+				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+			} catch (IOException e) {
+				e.printStackTrace();
+				f = null;
+				mCurrentPhotoPath = null;
+			}
+			break;
+
+		default:
+			break;			
+		}
+
+		startActivityForResult(takePictureIntent, actionCode);
+	}
+
+
+	private void handleBigCameraPhoto() {
+
+		if (mCurrentPhotoPath != null) {
+			setPic();
+			galleryAddPic();
+			mCurrentPhotoPath = null;
+		}
+
+	}
+
+	Button.OnClickListener mTakePicOnClickListener = 
+		new Button.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			dispatchTakePictureIntent(ACTION_TAKE_PHOTO_B);
+		}
+	};
+
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy); 
+		
+		mImageView = (ImageView) findViewById(R.id.imageView1);
+		mImageBitmap = null;
+		meditText1 = (EditText) findViewById(R.id.editText1);
+
+		Button picBtn = (Button) findViewById(R.id.btnIntend);
+		setBtnListenerOrDisable( 
+				picBtn, 
+				mTakePicOnClickListener,
+				MediaStore.ACTION_IMAGE_CAPTURE
+		);
+
+
+		
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+			mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
+		} else {
+			mAlbumStorageDirFactory = new BaseAlbumDirFactory();
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+		case ACTION_TAKE_PHOTO_B: {
+			if (resultCode == RESULT_OK) {
+				handleBigCameraPhoto();
+			}
+			break;
+		}
+
+		}
+	}
+
+	//keeps image state so that screen orientation can be changed
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putParcelable(BITMAP_STORAGE_KEY, mImageBitmap);
+		outState.putBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY, (mImageBitmap != null) );
+		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		mImageBitmap = savedInstanceState.getParcelable(BITMAP_STORAGE_KEY);
+		mImageView.setImageBitmap(mImageBitmap);
+		mImageView.setVisibility(
+				savedInstanceState.getBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY) ? 
+						ImageView.VISIBLE : ImageView.INVISIBLE
+		);
+	}
+
+	public static boolean isIntentAvailable(Context context, String action) {
+		final PackageManager packageManager = context.getPackageManager();
+		final Intent intent = new Intent(action);
+		List<ResolveInfo> list =
+			packageManager.queryIntentActivities(intent,
+					PackageManager.MATCH_DEFAULT_ONLY);
+		return list.size() > 0;
+	}
+
+	private void setBtnListenerOrDisable( 
+			Button btn, 
+			Button.OnClickListener onClickListener,
+			String intentName
+	) {
+		if (isIntentAvailable(this, intentName)) {
+			btn.setOnClickListener(onClickListener);        	
+		} else {
+			btn.setText( 
+				getText(R.string.cannot).toString() + " " + btn.getText());
+			btn.setClickable(false);
+		}
+	}
+
+}
+}
