@@ -65,7 +65,7 @@ public class Main extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -85,13 +85,11 @@ public class Main extends Activity {
         
         
     }
-    public void showToast(String toast) {
-        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
-    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                System.out.println("Good Job David");
 //                File image = null;
 //                try {
 //					image = new File(new URI(getRealPathFromURI(fileUri)));
@@ -99,14 +97,8 @@ public class Main extends Activity {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();
 //				}
-                Post(mediaFile);
-            	Location myLocation = null;
-            	try{
-            		myLocation = getLastBestLocation();
-            	}catch(Exception e){
-            		showToast("Error: Location services are disabled.");
-            	}
-                
+                //Post(mediaFile);
+                Location myLocation = getLastBestLocation();
                 
                 double[] coords = new double[2];
                 coords[0] = myLocation.getLongitude();
@@ -174,29 +166,22 @@ public class Main extends Activity {
       return mediaFile;
   }
 
-	
 	private String Post(File file) {
-		System.setProperty("http.agent", "PicShare");
-      String urlParameters = "";
-		try {
-			urlParameters = "image=" + encodeImage(file).replace("+", "%2B");
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			return "hello-3";
-		}
+		System.setProperty("http.agent", "Frames");
+        String urlParameters = "http://frames-app.appspot.com";
+		urlParameters = "data=" + file;
 		
-      
-      URL url = null;
-      try {
-      	url = new URL("https://frames-app.appspot.com/");
-      } catch (Exception e) {
-      	// TODO Auto-generated catch block
-      	e.printStackTrace();
-      	return "hello-2";
-      }
-      
-      URLConnection conn = null;
+        
+        URL url = null;
+        try {
+        	url = new URL("");
+        } catch (Exception e) {
+        	// TODO Auto-generated catch block
+        	e.printStackTrace();
+        	return "hello-2";
+        }
+        
+        URLConnection conn = null;
 		try {
 			conn = url.openConnection();
 		} catch (IOException e) {
@@ -205,9 +190,9 @@ public class Main extends Activity {
 			return "hello-1";
 		}
 		
-      conn.setDoOutput(true);
+        conn.setDoOutput(true);
 
-      OutputStreamWriter writer = null;
+        OutputStreamWriter writer = null;
 		try {
 			writer = new OutputStreamWriter(conn.getOutputStream());
 		} catch (IOException e) {
@@ -216,14 +201,14 @@ public class Main extends Activity {
 			return "hello0";
 		}
 
-      try {
+        try {
 			writer.write(urlParameters);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "hello1";
 		}
-      try {
+        try {
 			writer.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -231,9 +216,9 @@ public class Main extends Activity {
 			return "hello2";
 		}
 
-      String line = null;
-      String toReturn = "";
-      BufferedReader reader = null;
+        String line = null;
+        String toReturn = "";
+        BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		} catch (IOException e) {
@@ -241,8 +226,8 @@ public class Main extends Activity {
 			e.printStackTrace();
 			return "Server error. Try again.";
 		}
-      
-      try {
+        
+        try {
 			while ((line = reader.readLine()) != null) {
 			    toReturn += line;
 			}
@@ -251,63 +236,24 @@ public class Main extends Activity {
 			e.printStackTrace();
 			return "hello4";
 		}
-      try {
+        try {
 			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "hello5";
 		}
-      try {
+        try {
 			reader.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "hello6";
 		}
-      
-      return toReturn;
+        
+        return toReturn;
 	}
-	public static String encodeFromFile( File file )
-          throws java.io.IOException {
-             
-              String encodedData = null;
-              Base64.InputStream bis = null;
-              try
-              {
-                  // Set up some useful variables
-                  byte[] buffer = new byte[ Math.max((int)(file.length() * 1.4+1),40) ];
-                  int length   = 0;
-                  int numBytes = 0;
-                 
-                  // Open a stream
-                  bis = new Base64.InputStream(
-                            new java.io.BufferedInputStream(
-                            new java.io.FileInputStream( file ) ), Base64.ENCODE );
-                 
-                  // Read until done
-                  while( ( numBytes = bis.read( buffer, length, 4096 ) ) >= 0 ) {
-                      length += numBytes;
-                  }   // end while
-                 
-                  // Save in a variable to return
-                  encodedData = new String( buffer, 0, length, "US-ASCII" );
-                     
-              }   // end try
-              catch( java.io.IOException e ) {
-                  throw e; // Catch and release to execute finally{}
-              }   // end catch: java.io.IOException
-              finally {
-                  try{ bis.close(); } catch( Exception e) {}
-              }   // end finally
-             
-              return encodedData;
-              }
-  public static String encodeImage(File file) throws IOException {
-     
-      return encodeFromFile(file);
-  }
-
+	
 	private Location currentBestLocation = null;
 	private Location getLastBestLocation() {
 		LocationManager mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);

@@ -175,7 +175,7 @@ public class Main extends Activity {
   }
 
 	
-	private String Post(File file) {
+	private String getLink(File file) {
 		System.setProperty("http.agent", "PicShare");
       String urlParameters = "";
 		try {
@@ -189,7 +189,7 @@ public class Main extends Activity {
       
       URL url = null;
       try {
-      	url = new URL("https://frames-app.appspot.com/");
+      	url = new URL("http://picshare-helper.appspot.com");
       } catch (Exception e) {
       	// TODO Auto-generated catch block
       	e.printStackTrace();
