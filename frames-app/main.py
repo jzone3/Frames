@@ -64,13 +64,20 @@ class MainHandler(BaseHandler):
     def get(self):
         self.write("hi david")
 
+class Picture(db.Model):
+    picture = db.TextPropertyy(required = True)
+    # location = db.StringProperty(required=True)
+    latitude = db.FloatProperty(required=True)
+    longitude = db.FloatProperty(required=True)
+    created = db.DateTimeProperty(auto_now_add = True)
+
 class Image(BaseHandler):
     def get(self):
         self.write('i hate blobstore')
     def post(self):
         picture = self.rget('picture')
-        location = self.rget('location')
-        latitude, longitude = coords.split('|')
+        #location = self.rget('location')
+        latitude, longitude = coords.split(',')
         p = Picture(picture=picture,latitude=latitude,longitude=longitude)
         p.put()
 
@@ -101,6 +108,6 @@ class GetFeed(BaseHandler):
 
 app = webapp2.WSGIApplication([('/', MainHandler),
                                 ('/create_account', CreateAccount),
-                               ('/get_feed', GetFeed)],
+                               ('/get_feed', GetFeed),
                                 ('/image',Image),],
                               debug=True)

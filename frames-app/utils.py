@@ -30,7 +30,7 @@ PASS_RE = re.compile(r"^.{3,20}$")
 
 class Picture(db.Model):
 	picture = db.TextPropertyy(required = True)
-	# location = db.StringProperty(required=True)
+	location = db.StringProperty(required=False)
 	latitude = db.FloatProperty(required=True)
 	longitude = db.FloatProperty(required=True)
 	created = db.DateTimeProperty(auto_now_add = True)
@@ -47,7 +47,7 @@ RADIUS_INCREMENTS = [5, 10, 25, 50, 100]
 GET_USER = db.GqlQuery("SELECT * FROM Users WHERE email = :email LIMIT 1")
 
 def get_feed_by_coords(latitude, longitude):
-	#(x - h)^2 + (y - k)^2 = r²
+	#(x - h)^2 + (y - k)^2 = r2
 	r = None
 	for d in RADIUS_INCREMENTS:
 		lat_plus = latitude + d
