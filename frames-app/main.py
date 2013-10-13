@@ -109,34 +109,19 @@ class GetFeed(BaseHandler):
 		html_to_add_total = ""
 		response = []
 		for i in r:
-			if i == r[len(r) - 1]:
-				html_to_add_total += """
-				<div class="image last">
-					<div class="image-info">
-						<div class="location">
-							<i class="icon-pushpin"></i> %s
-						</div>
-						<div class="time">
-							<i class="icon-time"></i> %s
-						</div>
+			html_to_add_total += """
+			<div class="image">
+				<div class="image-info">
+					<div class="location">
+						<i class="icon-pushpin"></i> %s
 					</div>
-					<img src="data:image/png;base64,%s">
-				</div>
-				""" % (str(((latitude - i.latitude)**2 + (longitude - i.longitude)**2)**.5)[:3], time_difference(i.created), i.picture)	
-			else:
-				html_to_add_total += """
-				<div class="image">
-					<div class="image-info">
-						<div class="location">
-							<i class="icon-pushpin"></i> %s
-						</div>
-						<div class="time">
-							<i class="icon-time"></i> %s
-						</div>
+					<div class="time">
+						<i class="icon-time"></i> %s
 					</div>
-					<img src="data:image/png;base64,%s">
 				</div>
-				""" % (str(((latitude - i.latitude)**2 + (longitude - i.longitude)**2)**.5)[:3], time_difference(i.created), i.picture)
+				<img src="data:image/png;base64,%s">
+			</div>
+			""" % (str(((latitude - i.latitude)**2 + (longitude - i.longitude)**2)**.5)[:3], time_difference(i.created), i.picture)	
 		self.write(html_to_add_total)
 
 app = webapp2.WSGIApplication([('/', MainHandler),
