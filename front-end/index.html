@@ -77,7 +77,46 @@
 			<br/><br/><br/><br/><br/>
 		</div>
 		<div id="page-2-content" style="display: none;">2</div>
-		<div id="page-3-content" style="display: none;">3</div>
+		<div id="page-3-content" style="display: none;">
+			<ol style="font-size:190%">
+				<li id ="location-1-list"><a id="location-1">Location - n views</a></li>
+				<li id ="location-2-list"><a id="location-2">Location - n views</a></li>
+				<li id ="location-3-list"><a id="location-3">Location - n views</a></li>
+				<li id ="location-4-list"><a id="location-4">Location - n views</a></li>
+				<li id ="location-5-list"><a id="location-5">Location - n views</a></li>
+				<li id ="location-6-list"><a id="location-6">Location - n views</a></li>
+			</ol>	
+		</div>
+		<div id="location-1-content" style="display:none;" >
+			<p style="font-size:190%">Picture will go here from Location 1 <br/>
+				<button id="meh" type="button" class="navbar-element btn" style="font-size:190%">Back</button> 
+			</p>
+		</div>
+		<div id="location-2-content" style="display:none;" >
+			<p style="font-size:190%">Picture will go here from Location 2 <br/>
+				<button id="meh1" type="button" class="navbar-element btn" style="font-size:190%">Back</button> 
+			</p>
+		</div>
+		<div id="location-3-content" style="display:none;" >
+			<p style="font-size:190%">Picture will go here from Location 3 <br/>
+				<button id="meh2" type="button" class="navbar-element btn" style="font-size:190%">Back</button> 
+			</p>
+		</div>
+		<div id="location-4-content" style="display:none;" >
+			<p style="font-size:190%">Picture will go here from Location 4 <br/>
+				<button id="meh3" type="button" class="navbar-element btn" style="font-size:190%">Back</button> 
+			</p>
+		</div>
+		<div id="location-5-content" style="display:none;" >
+			<p style="font-size:190%">Picture will go here from Location 5 <br/>
+				<button id="meh4" type="button" class="navbar-element btn" style="font-size:190%">Back</button> 
+			</p>
+		</div>
+		<div id="location-6-content" style="display:none;" >
+			<p style="font-size:190%">Picture will go here from Location 6 <br/>
+				<button id="meh5" type="button" class="navbar-element btn" style="font-size:190%">Back</button> 
+			</p>
+		</div>
 		<div id="page-4-content" style="display: none;">4</div>
 	</div>
 	<div class="navbar">
@@ -104,6 +143,7 @@
 			$('#page-3-button').click(function() {
 				changePage(3);
 			});
+
 		});
 
 		var previous = 1;
@@ -114,6 +154,64 @@
 			$('#page-' + pageNumber + '-content').show();
 			$('#page-' + pageNumber + '-button').addClass('on-page');
 			previous = pageNumber;
+		}
+
+	</script>
+	<script type="text/javascript">
+		$('document').ready(function() {			
+			$('#location-1').click(function() {
+				getLocation(1);
+			});
+
+			$('#location-2').click(function() {
+				getLocation(2);
+			});
+
+			$('#location-3').click(function() {
+				getLocation(3);
+			});
+			$('#location-4').click(function() {
+				getLocation(3);
+			});
+			$('#location-5').click(function() {
+				getLocation(3);
+			});
+			$('#location-6').click(function() {
+				getLocation(3);
+			});
+			$('#meh').click(function(){
+				getLocation(0);
+			});
+			$('#meh1').click(function(){
+				getLocation(0);
+			});
+			$('#meh2').click(function(){
+				getLocation(0);
+			});
+			$('#meh3').click(function(){
+				getLocation(0);
+			});
+			$('#meh4').click(function(){
+				getLocation(0);
+			});
+			$('#meh5').click(function(){
+				getLocation(0);
+			});
+		});
+
+		var previous = 1;
+		
+		var getLocation = function(pageNumber) {	
+			if (pageNumber == 0){
+				$('#page-3-content').show();
+				$('#location-' + previous + '-content').hide();	
+			}
+			else {
+			$('#location-' + previous + '-content').hide();
+			$('#page-3-content').hide();
+			$('#location-' + pageNumber + '-content').show();
+			previous = pageNumber;
+			}
 		}
 
 	</script>
