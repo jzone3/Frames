@@ -29,7 +29,7 @@ PASS_RE = re.compile(r"^.{3,20}$")
 # 	date_created   = db.DateTimeProperty(auto_now_add = True)
 
 class Picture(db.Model):
-	picture = db.TextPropertyy(required = True)
+	picture = db.TextProperty(required = True)
 	# location = db.StringProperty(required=True)
 	latitude = db.FloatProperty(required=True)
 	longitude = db.FloatProperty(required=True)

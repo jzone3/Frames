@@ -70,7 +70,9 @@ class Image(BaseHandler):
     def post(self):
         picture = self.rget('picture')
         location = self.rget('location')
-        latitude, longitude = coords.split('|')
+        longitude, latitude = location.split(',')
+        longitude = float(longitude)
+        latitude = float(latitude)
         p = Picture(picture=picture,latitude=latitude,longitude=longitude)
         p.put()
 
@@ -101,6 +103,6 @@ class GetFeed(BaseHandler):
 
 app = webapp2.WSGIApplication([('/', MainHandler),
                                 ('/create_account', CreateAccount),
-                               ('/get_feed', GetFeed)],
+                               ('/get_feed', GetFeed),
                                 ('/image',Image),],
                               debug=True)
