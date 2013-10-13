@@ -20,6 +20,10 @@ body {
 	margin: 0;
 	float: left;
 	background-color: #9b59b6;
+	padding: none;
+	border-left: none;
+	border-bottom: none;
+	border-top: none;
 	border-right: 1px solid rgba(0,0,0,.5);
 	height: 100%;
 	color: #ecf0f1;
@@ -38,4 +42,8 @@ body {
 
 button {
 	border-radius: 0 !important;
+}
+
+.on-page {
+	background-color: #67307E;
 }
