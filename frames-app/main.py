@@ -59,10 +59,7 @@ class BaseHandler(webapp2.RequestHandler):
                 self.delete_cookie(LOGIN_COOKIE_NAME)
                 return False
         return False
-class Picture(db.Model):
-    picture = db.TextPropertyy(required = True)
-    location = db.StringProperty(required=True)
-    created = db.DateTimeProperty(auto_now_add = True)
+
 class MainHandler(BaseHandler):
     def get(self):
         self.write("hi david")

@@ -1,8 +1,10 @@
 from google.appengine.ext import db
 from google.appengine.api import datastore_errors
 import re
+import json
 import hmac
 import hashlib
+import urllib2
 import datetime
 import random
 import string
@@ -26,7 +28,12 @@ PASS_RE = re.compile(r"^.{3,20}$")
 # 	email          = db.StringProperty(required = True)
 # 	date_created   = db.DateTimeProperty(auto_now_add = True)
 
-
+class Picture(db.Model):
+	picture = db.TextPropertyy(required = True)
+	# location = db.StringProperty(required=True)
+	latitude = db.FloatProperty(required=True)
+	longitude = db.FloatProperty(required=True)
+	created = db.DateTimeProperty(auto_now_add = True)
 
 class Users(db.Model):
 	email          = db.StringProperty(required = True)
@@ -35,9 +42,36 @@ class Users(db.Model):
 	date_created   = db.DateTimeProperty(auto_now_add = True)
 	# email_verified = db.BooleanProperty(required = True)
 
+RADIUS_INCREMENTS = [5, 10, 25, 50, 100]
+
 GET_USER = db.GqlQuery("SELECT * FROM Users WHERE email = :email LIMIT 1")
 
-def get_feed_by_city(city):
+def get_feed_by_coords(latitude, longitude):
+	#(x - h)^2 + (y - k)^2 = r²
+	r = None
+	for d in RADIUS_INCREMENTS:
+		lat_plus = latitude + d
+		lat_minus = latitude - d
+		lon_plus = longitude + d
+		lon_minus = longitude - d
+		r = (db.GqlQuery("SELECT * FROM Picture WHERE latitude > :lat_minus AND \
+													 latitude < :lat_plus AND \
+													 longitude > :lon_minus AND \
+													 longitude < :lon_plus", lat_minus = lat_minus, lat_plus = lat_plus, lon_minus = lon_minus, lon_plus = lon_plus)).get()
+		if r and len(r) > 7:
+			break
+	return r
+
+
+def get_city_by_coords(latitude, longitude):
+	# latitude, longitude = coords.split('|')
+	latitude = float(latitude)
+	longitude = float(longitude)
+	url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=%s&sensor=false" % (str(latitude) + "," + str(longitude))
+	response = urllib2.urlopen(url)
+	html = json.load(response)
+	city_name = html['results'][0]['address_components'][2]['long_name']
+	return city_name
 
 def hash_str(string):
 	'''Hashes a string for user cookie'''
