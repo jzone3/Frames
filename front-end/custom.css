@@ -47,3 +47,9 @@ button {
 .on-page {
 	background-color: #67307E;
 }
+
+.page {
+	height: 100%;
+	width: 100%;
+	background-color: black;
+}

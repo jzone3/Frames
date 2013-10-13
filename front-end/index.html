@@ -8,16 +8,59 @@
 	<link rel="stylesheet" type="text/css" href="custom.css" />
 </head>
 <body>
-	<h1> test </h1>
+	<div id="page">
+		<div id="page-1-content" style="display: none;">1</div>
+		<div id="page-2-content" style="display: none;">2</div>
+		<div id="page-3-content" style="display: none;">3</div>
+		<div id="page-4-content" style="display: none;">4</div>
+		<div id="page-5-content" style="display: none;">5</div>
+	</div>
 	<div class="navbar">
-		<button type="button" class="navbar-element btn on-page">AB</button>
-		<button type="button" class="navbar-element btn">AB</button>
-		<button type="button" class="navbar-element btn">AB</button>
-		<button type="button" class="navbar-element btn">AB</button>
-		<button type="button" class="navbar-element-last btn">AB</button>
+		<button id="page-1-button" type="button" class="navbar-element btn on-page">AB</button>
+		<button id="page-2-button" type="button" class="navbar-element btn">AB</button>
+		<button id="page-3-button" type="button" class="navbar-element btn">AB</button>
+		<button id="page-4-button" type="button" class="navbar-element btn">AB</button>
+		<button id="page-5-button" type="button" class="navbar-element-last btn">AB</button>
 	</div>
 
 	<script type="text/javascript" src="jquery.min.js"></script>
 	<script type="text/javascript" src="bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		$('document').ready(function() {
+			changePage(1);
+			
+			$('#page-1-button').click(function() {
+				changePage(1);
+			});
+
+			$('#page-2-button').click(function() {
+				changePage(2);
+			});
+
+			$('#page-3-button').click(function() {
+				changePage(3);
+			});
+
+			$('#page-4-button').click(function() {
+				changePage(4);
+			});
+
+			$('#page-5-button').click(function() {
+				changePage(5);
+			});
+		});
+
+		var previous = 1;
+		
+		var changePage = function(pageNumber) {	
+			$('#page-' + previous + '-content').hide();
+			$('#page-' + previous + '-button').removeClass('on-page');
+			$('#page-' + pageNumber + '-content').show();
+			$('#page-' + pageNumber + '-button').addClass('on-page');
+			previous = pageNumber;
+		}
+
+	</script>
 </body>
 </html>
