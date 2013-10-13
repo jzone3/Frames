@@ -1,0 +1,26 @@
+body {
+	background-color: #ecf0f1;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	color: #8e44ad;
+}
+
+.navbar {
+	position: absolute;
+	bottom: 0;
+	height: 20px;
+	width: 100%;
+	background-color: #9b59b6;
+	margin-bottom: 0;
+}
+
+.navbar-element {
+	width: 20%;
+	padding: 0;
+	margin: 0;
+	float: left;
+	background-color: #9b59b6;
+	border: none;
+	height: 100%;
+	color: #ecf0f1;
+}
