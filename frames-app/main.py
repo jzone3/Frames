@@ -76,8 +76,15 @@ class Image(BaseHandler):
         self.write('i hate blobstore')
     def post(self):
         picture = self.rget('picture')
+<<<<<<< HEAD
         #location = self.rget('location')
         latitude, longitude = coords.split(',')
+=======
+        location = self.rget('location')
+        longitude, latitude = location.split(',')
+        longitude = float(longitude)
+        latitude = float(latitude)
+>>>>>>> 187e5d68f0e173ddf13c80ccdc80e49ba144fd87
         p = Picture(picture=picture,latitude=latitude,longitude=longitude)
         p.put()
 
@@ -95,15 +102,16 @@ class CreateAccount(BaseHandler):
         self.write(json.dumps(returned))
 
 class GetFeed(BaseHandler):
-	def get(self):
-		coords = self.rget('coords')
-		latitude, longitude = coords.split('|')
+	def post(self):
+		latitude = self.rget('lat')
+		longitude = self.rget('lon')
 		latitude = float(latitude)
 		longitude = float(longitude)
 		url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=%s&sensor=false" % (str(latitude) + "," + str(longitude))
 		response = urllib2.urlopen(url)
 		html = json.load(response)
 		city_name = html['results'][0]['address_components'][2]['long_name']
+		self.write(city_name)
 		get_feed_by_city(city_name)
 
 app = webapp2.WSGIApplication([('/', MainHandler),

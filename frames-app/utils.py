@@ -29,8 +29,13 @@ PASS_RE = re.compile(r"^.{3,20}$")
 # 	date_created   = db.DateTimeProperty(auto_now_add = True)
 
 class Picture(db.Model):
+<<<<<<< HEAD
 	picture = db.TextPropertyy(required = True)
 	location = db.StringProperty(required=False)
+=======
+	picture = db.TextProperty(required = True)
+	# location = db.StringProperty(required=True)
+>>>>>>> 187e5d68f0e173ddf13c80ccdc80e49ba144fd87
 	latitude = db.FloatProperty(required=True)
 	longitude = db.FloatProperty(required=True)
 	created = db.DateTimeProperty(auto_now_add = True)
@@ -60,7 +65,7 @@ def get_feed_by_coords(latitude, longitude):
 													 longitude < :lon_plus", lat_minus = lat_minus, lat_plus = lat_plus, lon_minus = lon_minus, lon_plus = lon_plus)).get()
 		if r and len(r) > 7:
 			break
-	return r
+	return r4
 
 
 def get_city_by_coords(latitude, longitude):
