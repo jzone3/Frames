@@ -165,3 +165,23 @@ button {
 	background-color: black;
 	padding-bottom: 60px;
 }
+
+.trending {
+	text-transform: uppercase;
+	text-align: center;
+	color: #ecf0f1;
+}
+
+.trending-well {
+	background-color: #67307E;
+	color: #ecf0f1;
+}
+
+.places {
+	text-align: center;
+}
+
+.places button {
+	background-color: #ecf0f1;
+	color: #67307E;	
+}

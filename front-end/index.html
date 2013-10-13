@@ -183,6 +183,9 @@
 				// toAdd = '<h1>test</h1>';
 				// $('#page-' + pageNumber + '-content').html(toAdd);
 			}
+			if (pageNumber ==3){
+				$('#page-' + pageNumber + '-content').html("<br/><br/><div class='container'><div class='well trending-well'><h2 class='trending'>Trending Places</h2><br><div class='places'><button type='button' class='btn' onclick='changePage(1);'>New Brunswick</button></div></div></div>");
+			}
 
 			$('#page-' + previous + '-content').hide();
 			$('#page-' + previous + '-button').removeClass('on-page');
