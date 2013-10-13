@@ -90,5 +90,5 @@ class CreateAccount(BaseHandler):
 
 app = webapp2.WSGIApplication([('/', MainHandler),
                                 ('/create_account', CreateAccount),
-                                ('/image'),],
+                                ('/image',Image),],
                               debug=True)
