@@ -60,6 +60,9 @@ class CreateAccount(BaseHandler):
     	email = self.rget('email')
     	self.response.headers['Content-Type'] = 'application/json'
         returned = create_account(username=username, password=psswrd, verify=verify, email=email)
+        if 'cookie' in returned:
+        	self.response.headers.add_header('Set-Cookie', returned['cookie'])
+        del returned['cookie']
         self.write(json.dumps(returned))
 
 app = webapp2.WSGIApplication([
