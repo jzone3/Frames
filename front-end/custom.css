@@ -86,6 +86,10 @@ body {
 	float: right;
 }
 
+.framed-main-img {
+	border: 10px solid #8e44ad;
+}
+
 .image-below .user img {
 	border-radius: 25px;
 	width: 50px;
