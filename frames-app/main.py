@@ -61,9 +61,8 @@ class BaseHandler(webapp2.RequestHandler):
         return False
 class Picture(db.Model):
     picture = db.TextPropertyy(required = True)
-    location = db.StringProperty(required=False)
+    location = db.StringProperty(required=True)
     created = db.DateTimeProperty(auto_now_add = True)
-    last_modified = db.DateTimeProperty(auto_now_add=True)
 class MainHandler(BaseHandler):
     def get(self):
         self.write("hi david")
@@ -73,7 +72,8 @@ class Image(BaseHandler):
         self.write('i hate blobstore')
     def post(self):
         picture = self.rget('picture')
-        p = Picture(picture=picture)
+        location = self.rget('location')
+        p = Picture(picture=picture,location=location)
         p.put()
 
 class CreateAccount(BaseHandler):
