@@ -63,7 +63,12 @@ class MainHandler(BaseHandler):
 
 class SendImage(BaseHandler):
     def get(self):
-        self.response.write('Hello world!')
+        self.response.out.write('<html><body>')
+        self.response.out.write('<form action="%s" method="POST" enctype="multipart/form-data">' % upload_url)
+        self.response.out.write("""Upload File: <input type="file" name="file"><br> <input type="submit"
+                                name="submit" value="Submit"> </form></body></html>""")
+    def post(self):
+        upload_url = blobstore.create_upload_url_async('/upload')
 
 class CreateAccount(BaseHandler):
     def post(self):
