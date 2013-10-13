@@ -9,7 +9,7 @@ import datetime
 import random
 import string
 import logging
-
+import time
 from secret import *
 
 try:
@@ -45,6 +45,23 @@ RADIUS_INCREMENTS = [5, 10, 25, 50, 100]
 
 GET_USER = db.GqlQuery("SELECT * FROM Users WHERE email = :email LIMIT 1")
 
+from math import radians, cos, sin, asin, sqrt
+
+def haversine(lon1, lat1, lon2, lat2):
+    """
+    Calculate the great circle distance between two points 
+    on the earth (specified in decimal degrees)
+    """
+    # convert decimal degrees to radians 
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+    # haversine formula 
+    dlon = lon2 - lon1 
+    dlat = lat2 - lat1 
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a)) 
+    km = 6367 * c
+    return km
+
 def get_feed_by_coords(latitude, longitude):
 	r = db.GqlQuery("SELECT * FROM Picture ORDER BY created DESC")
 	return r
@@ -58,6 +75,47 @@ def get_city_by_coords(latitude, longitude):
 	html = json.load(response)
 	city_name = html['results'][0]['address_components'][2]['long_name']
 	return city_name
+def time_difference(time):
+	'''Calculates text time difference for guide page'''
+	now = datetime.datetime.now()
+	if now > time + datetime.timedelta(days=365.25):
+		ago = now.year - time.year
+		if ago == 1:
+			return str(ago) + " yr"
+		else:
+			return str(ago) + " yr"
+	elif now >= time + datetime.timedelta(days=30):
+		ago = now.month - time.month
+		if ago == 1:
+			return str(ago) + " m"
+		else:
+			return str(ago) + " m"
+	elif now >= time + datetime.timedelta(days=1):
+		ago = now.day - time.day
+		if ago == 1:
+			return str(ago) + " d"
+		else:
+			return str(ago) + " d"
+	elif now >= time + datetime.timedelta(hours=1):
+		ago = now.hour - time.hour
+		if ago == 1:
+			return str(ago) + " h"
+		else:
+			return str(ago) + " h"
+	elif now >= time + datetime.timedelta(minutes=1):
+		ago = now.minute - time.minute
+		if ago == 1:
+			return str(ago) + " m"
+		else:
+			return str(ago) + " m"
+	elif now >= time + datetime.timedelta(seconds=1):
+		ago = now.second - time.second
+		if ago == 1:
+			return str(ago) + " s"
+		else:
+			return str(ago) + " s"
+	else:
+		return "<1 s"
 
 def hash_str(string):
 	'''Hashes a string for user cookie'''
