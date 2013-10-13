@@ -26,6 +26,8 @@ PASS_RE = re.compile(r"^.{3,20}$")
 # 	email          = db.StringProperty(required = True)
 # 	date_created   = db.DateTimeProperty(auto_now_add = True)
 
+
+
 class Users(db.Model):
 	email          = db.StringProperty(required = True)
 	username       = db.StringProperty(required = True)

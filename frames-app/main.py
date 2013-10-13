@@ -22,6 +22,7 @@ import webapp2
 from google.appengine.ext import db
 from google.appengine.api import memcache
 from google.appengine.api import datastore_errors
+from google.appengine.ext import blobstore
 
 try:
   # When deployed
@@ -44,6 +45,18 @@ class BaseHandler(webapp2.RequestHandler):
 		'''Gets a HTTP parameter'''
 		return self.request.get(name)
 
+	def logged_in(self, email_cookie = None):
+		'''Checks if login cookie is valid (authenticates user)'''
+		email_cookie = self.request.cookies.get(LOGIN_COOKIE_NAME, '')
+		if email_cookie:
+			email, hashed_email = email.split("|")
+			if email and hashed_email and hash_str(email) == hashed_email:
+				return True
+			else:
+				self.delete_cookie(LOGIN_COOKIE_NAME)
+				return False
+		return False
+
 class MainHandler(BaseHandler):
     def get(self):
         self.response.write('Hello world!')
@@ -53,7 +66,7 @@ class SendImage(BaseHandler):
         self.response.write('Hello world!')
 
 class CreateAccount(BaseHandler):
-    def get(self):
+    def post(self):
     	username = self.rget('username')
     	psswrd = self.rget('password')
     	verify = self.rget('verify')
@@ -68,5 +81,5 @@ class CreateAccount(BaseHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/send_image', SendImage),
-    ('/create_account', CreateAccount)
+    ('/create_account', CreateAccount),
 ], debug=True)
