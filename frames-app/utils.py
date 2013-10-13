@@ -60,7 +60,7 @@ def get_feed_by_coords(latitude, longitude):
 													 longitude < :lon_plus", lat_minus = lat_minus, lat_plus = lat_plus, lon_minus = lon_minus, lon_plus = lon_plus)).get()
 		if r and len(r) > 7:
 			break
-	return r
+	return r4
 
 
 def get_city_by_coords(latitude, longitude):
