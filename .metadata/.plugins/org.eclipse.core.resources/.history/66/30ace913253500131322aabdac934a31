@@ -17,14 +17,13 @@ import android.widget.Toast;
 
 
 public class WebAppInterface {
-	static Main mContext;
+	Main mContext;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Uri fileUri;
 
     /** Instantiate the interface and set the context */
     WebAppInterface(Main c) {
         mContext = c;
-        
     }
 
     @JavascriptInterface
@@ -42,6 +41,10 @@ public class WebAppInterface {
     @JavascriptInterface
     public void onOpen(){
     	mContext.onOpen();
+    }
+    @JavascriptInterface
+    public static void showProgress(String toast){
+    	Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
     }
     @JavascriptInterface
     public String encoder(){

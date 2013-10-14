@@ -62,9 +62,7 @@ public class Post2 extends AsyncTask<String, Integer, Boolean> {
 			return false;
 		}
 		HttpEntity entity = response.getEntity();
-		
-		publishProgress(30);
-		
+
 		if (entity != null) {
 		    InputStream instream;
 			try {
@@ -78,7 +76,6 @@ public class Post2 extends AsyncTask<String, Integer, Boolean> {
 				e.printStackTrace();
 				return false;
 			}
-			publishProgress(70);
 		    try {
 		        // do something useful
 		    } finally {
@@ -90,7 +87,6 @@ public class Post2 extends AsyncTask<String, Integer, Boolean> {
 				}
 		    }
 		}
-		publishProgress(100);
 		return true;
 	}
 	@Override
