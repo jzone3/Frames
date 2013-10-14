@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="18" version="2.0">
+<workbench progressCount="17" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="80" y="-11">
 <fastViewData fastViewLocation="1024"/>
@@ -18,7 +18,7 @@
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="80" y="22"/>
 <coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="107" y="22"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
@@ -42,6 +42,7 @@
 <part id="3"/>
 <part id="4"/>
 <part id="6"/>
+<part id="7"/>
 </presentation>
 </folder>
 </info>
@@ -66,11 +67,15 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" partName="Main.java" path="C:/Users/David Zilburg/Documents/Git/Frames/FramesApp/src/com/example/frames/Main.java" title="Main.java" tooltip="FramesApp/src/com/example/frames/Main.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FramesApp/src/com/example/frames/Main.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8578" selectionTopPixel="4480"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8909" selectionTopPixel="3239"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Post.java" partName="Post.java" path="C:/Users/David Zilburg/Documents/Git/Frames/FramesApp/src/com/example/frames/Post.java" title="Post.java" tooltip="FramesApp/src/com/example/frames/Post.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FramesApp/src/com/example/frames/Post.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2182" selectionTopPixel="43"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="362" selectionTopPixel="1"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Post2.java" partName="Post2.java" path="C:/Users/David Zilburg/Documents/Git/Frames/FramesApp/src/com/example/frames/Post2.java" title="Post2.java" tooltip="FramesApp/src/com/example/frames/Post2.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/FramesApp/src/com/example/frames/Post2.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="982" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -88,9 +93,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (3 items)"/>
-<category IMemento.internal.id="Warnings"/>
-<category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings (59 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="120" org.eclipse.ui.ide.markerType="120" org.eclipse.ui.ide.pathField="160" org.eclipse.ui.ide.resourceField="120" org.eclipse.ui.ide.severityAndDescriptionField="400"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -99,9 +102,6 @@
 <visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
-</view>
-<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
-<viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
 <viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="">
@@ -129,6 +129,9 @@
 </xmlDefinedFilters>
 </customFilters>
 </viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
 </view>
 <view id="com.android.ide.eclipse.ddms.views.SysInfoView" partName="System Information"/>
 <view id="com.android.ide.eclipse.ddms.views.EmulatorControlView" partName="Emulator Control"/>
@@ -314,7 +317,7 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@2e7e2e35" ratio="0.5" ratioLeft="454" ratioRight="454" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@2e7e2e35" ratio="0.68061674" ratioLeft="618" ratioRight="290" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -339,113 +342,17 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FramesApp/src/com/example/frames/Main.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FramesApp/src/com/example/frames/MyFileContentProvider.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FramesApp/src/com/example/frames/Base64.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FramesApp/src/com/example/frames/Post.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FramesApp/src/com/example/frames/Post.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/FramesApp/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FramesApp/src/com/example/frames/Post2.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FramesApp/src/com/example/frames/Post2.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/FramesApp/src/com/example/frames/Post.java"/>
 </editors>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="10390" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="2605" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="8933" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="7331" y="4"/>
-</item>
-<item historyLabel="MyFileContentProvider.java" index="1">
-<position info="not_deleted" x="131" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="7331" y="4"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="8665" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="8670" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="8744" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="8669" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="4293" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="241" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="182" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="2214" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="8929" y="0"/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="300" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="451" y="51"/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="300" y="0"/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="1162" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="909" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position/>
-</item>
-<item historyLabel="Base64.java" index="2">
-<position info="not_deleted" x="10785" y="1"/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="909" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="557" y="0"/>
-</item>
-<item historyLabel="Main.java" index="0">
-<position info="not_deleted" x="8929" y="0"/>
-</item>
-<item historyLabel="Post.java" index="3">
-<position info="not_deleted" x="557" y="0"/>
-</item>
-<item historyLabel="Post.java" index="3">
+<item historyLabel="Post.java" index="1">
 <position info="not_deleted" x="376" y="0"/>
 </item>
-<item historyLabel="Post.java" index="3">
+<item historyLabel="Post.java" index="1">
 <position info="not_deleted" x="2182" y="0"/>
 </item>
 <item historyLabel="Main.java" index="0">
@@ -454,7 +361,7 @@
 <item historyLabel="Main.java" index="0">
 <position info="not_deleted" x="4293" y="0"/>
 </item>
-<item historyLabel="Post.java" index="3">
+<item historyLabel="Post.java" index="1">
 <position info="not_deleted" x="2182" y="0"/>
 </item>
 <item historyLabel="Main.java" index="0">
@@ -490,8 +397,105 @@
 <item historyLabel="Main.java" index="0">
 <position/>
 </item>
-<item active="true" historyLabel="Main.java" index="0">
+<item historyLabel="Main.java" index="0">
 <position info="not_deleted" x="8744" y="0"/>
+</item>
+<item historyLabel="Post.java" index="2">
+<position info="not_deleted" x="2376" y="0"/>
+</item>
+<item historyLabel="Post.java" index="2">
+<position info="not_deleted" x="2412" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8894" y="0"/>
+</item>
+<item historyLabel="Post.java" index="2">
+<position info="not_deleted" x="2412" y="0"/>
+</item>
+<item historyLabel="Post.java" index="2">
+<position info="not_deleted" x="416" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8894" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8837" y="0"/>
+</item>
+<item historyLabel="Post.java" index="2">
+<position info="not_deleted" x="416" y="0"/>
+</item>
+<item historyLabel="FramesApp Manifest" index="3"/>
+<item historyLabel="Post.java" index="2">
+<position info="not_deleted" x="700" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8879" y="0"/>
+</item>
+<item historyLabel="Post.java" index="2">
+<position info="not_deleted" x="700" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="9054" y="806"/>
+</item>
+<item historyLabel="Post.java" index="2">
+<position info="not_deleted" x="715" y="0"/>
+</item>
+<item historyLabel="Post2.java" index="4">
+<position info="not_deleted" x="1316" y="0"/>
+</item>
+<item historyLabel="Post.java" index="2">
+<position info="not_deleted" x="362" y="0"/>
+</item>
+<item historyLabel="Post2.java" index="4">
+<position info="not_deleted" x="1316" y="0"/>
+</item>
+<item historyLabel="Post2.java" index="4">
+<position info="not_deleted" x="1586" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="9054" y="806"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8985" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8806" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8804" y="0"/>
+</item>
+<item historyLabel="Post2.java" index="5">
+<position info="not_deleted" x="1584" y="0"/>
+</item>
+<item historyLabel="Post.java" index="6">
+<position info="not_deleted" x="362" y="0"/>
+</item>
+<item historyLabel="Post2.java" index="5">
+<position info="not_deleted" x="1314" y="0"/>
+</item>
+<item historyLabel="Post.java" index="6">
+<position info="not_deleted" x="362" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8952" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8952" y="0"/>
+</item>
+<item historyLabel="Post2.java" index="5">
+<position info="not_deleted" x="1314" y="0"/>
+</item>
+<item historyLabel="Post2.java" index="5">
+<position info="not_deleted" x="1501" y="0"/>
+</item>
+<item historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8717" y="0"/>
+</item>
+<item historyLabel="Post2.java" index="5">
+<position info="not_deleted" x="982" y="0"/>
+</item>
+<item active="true" historyLabel="Main.java" index="0">
+<position info="not_deleted" x="8717" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -499,13 +503,6 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="left"/>
-</trimArea>
-<trimArea IMemento.internal.id="131072">
-<trimItem IMemento.internal.id="right"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.editorss"/>
-</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -514,12 +511,13 @@
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.HeapStatus"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="bottom"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@2e7e2e35"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Post2.java" tooltip="FramesApp/src/com/example/frames/Post2.java">
+<persistable path="/FramesApp/src/com/example/frames/Post2.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Post.java" tooltip="FramesApp/src/com/example/frames/Post.java">
 <persistable path="/FramesApp/src/com/example/frames/Post.java"/>
 </file>
@@ -561,9 +559,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CameraActivity.java" tooltip="FramesApp/src/com/example/frames/CameraActivity.java">
 <persistable path="/FramesApp/src/com/example/frames/CameraActivity.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WebAppInterface.java" tooltip="FramesApp/src/com/example/frames/WebAppInterface.java">
-<persistable path="/FramesApp/src/com/example/frames/WebAppInterface.java"/>
 </file>
 </mruList>
 </workbench>

@@ -125,7 +125,7 @@ public class Main extends Activity {
                 double[] coords = new double[2];
                 coords[0] = myLocation.getLongitude();
                 coords[1] = myLocation.getLatitude();
-                System.out.println("Yay coordinates: " + coords[0] + ", " + coords[1]);
+                System.out.println("Yay coordinates: " + Arrays.toString(coords).replace("[", "").replace("]","").replace("!", ""));
                 Poster(coords);
                 
 				}
@@ -231,15 +231,19 @@ public class Main extends Activity {
 		        }
 	public static void Poster(double[] coords){
 		System.setProperty("http.agent", "Frames");
-        String urlParameters = "";
+        String urlParameters1 = "";
+        String urlParameters2 = "";
 		try {
-			urlParameters = "picture=" + encodeImage(mediaFile).replace("+", "%2B").replace("\n", "") + "location=" + Arrays.toString(coords).replace("[", "").replace("]","");
+			urlParameters1 = "" + encodeImage(mediaFile).replace("+", "%2B");
+			urlParameters2 = coords[0] + "," + coords[1];
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			return ;
+			System.out.println("Encoding failed");
+			return;
 		}
-		new Post().execute("http://frames-app.appspot.com/image", urlParameters);
+		//new Post().execute("http://frames-app.appspot.com/image", urlParameters);
+		new Post2().execute("http://frames-app.appspot.com/image", urlParameters1, urlParameters2);
 	}
 
 //		HttpClient httpclient = new DefaultHttpClient();

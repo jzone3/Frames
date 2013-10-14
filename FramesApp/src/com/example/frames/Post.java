@@ -1,14 +1,20 @@
 package com.example.frames;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URLConnection;
 import java.net.URL;
 
 import android.os.AsyncTask;
 
-public class Post extends AsyncTask<String, Long, Boolean> {
+public class Post extends AsyncTask<String, Integer, Boolean> {
 
+	@Override
+	protected void onPreExecute (){
+		System.out.println("About to start picture upload.");
+	}
 	@Override
 	protected Boolean doInBackground(String... urls) {
 		URL url = null;
@@ -17,6 +23,7 @@ public class Post extends AsyncTask<String, Long, Boolean> {
         } catch (Exception e) {
         	// TODO Auto-generated catch block
         	e.printStackTrace();
+        	
         	return false;
         }
 		
@@ -26,6 +33,7 @@ public class Post extends AsyncTask<String, Long, Boolean> {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("should print");
 			return false;
 		}
 		
@@ -57,25 +65,25 @@ public class Post extends AsyncTask<String, Long, Boolean> {
 		}
 
         String line = null;
-//        String toReturn = "";
-//        BufferedReader reader = null;
-//		try {
-//			reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return;
-//		}
-//        
-//        try {
-//			while ((line = reader.readLine()) != null) {
-//			    toReturn += line;
-//			}
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return;
-//		}
+        String toReturn = "";
+        BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+        
+        try {
+			while ((line = reader.readLine()) != null) {
+			    toReturn += line;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
         try {
 			writer.close();
 		} catch (IOException e) {
@@ -83,15 +91,23 @@ public class Post extends AsyncTask<String, Long, Boolean> {
 			e.printStackTrace();
 			return false;
 		}
-//        try {
-//			reader.close();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return;
-//		}
+        try {
+			reader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
         
         return true;
 	}
+	@Override
+    protected void onPostExecute(Boolean result) {
+        System.out.println("Upload success:" + result);
+    }
+	@Override
+    protected void onProgressUpdate(Integer... progress) {
+        System.out.println("Image upload progress percent: " + progress[0]);
+    }
 
 }
