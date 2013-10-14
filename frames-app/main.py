@@ -64,12 +64,6 @@ class MainHandler(BaseHandler):
     def get(self):
         self.write("hi david")
 
-# class Picture(db.Model):
-#     picture = db.TextProperty(required = True)
-#     # location = db.StringProperty(required=True)
-#     latitude = db.FloatProperty(required=True)
-#     longitude = db.FloatProperty(required=True)
-#     created = db.DateTimeProperty(auto_now_add = True)
 
 class Image(BaseHandler):
     def get(self):
