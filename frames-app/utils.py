@@ -63,7 +63,7 @@ def haversine(lon1, lat1, lon2, lat2):
     return km
 
 def get_feed_by_coords(latitude, longitude):
-	r = db.GqlQuery("SELECT * FROM Picture ORDER BY created DESC")
+	r = db.GqlQuery("SELECT * FROM Picture ORDER BY created DESC LIMIT 7")
 	return r
 
 def get_city_by_coords(latitude, longitude):
